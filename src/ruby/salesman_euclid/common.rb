@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Optimization
+module Opticontest
   module SalesmanEuclid
     module Common
       class Points

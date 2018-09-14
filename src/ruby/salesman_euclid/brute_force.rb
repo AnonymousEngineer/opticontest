@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module Optimization
+module Opticontest
   module SalesmanEuclid
     module BruteForce
       class Algorithm
-        include Optimization::SalesmanEuclid::Common
+        include Opticontest::SalesmanEuclid::Common
 
         attr_reader :points
 

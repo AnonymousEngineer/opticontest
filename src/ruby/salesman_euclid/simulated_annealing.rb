@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Optimization
+module Opticontest
   module SalesmanEuclid
     module SimulatedAnnealing
       class Config
@@ -36,7 +36,7 @@ module Optimization
       end
 
       class Algorithm
-        include Optimization::SalesmanEuclid::Common
+        include Opticontest::SalesmanEuclid::Common
 
         attr_reader :config, :points
 
