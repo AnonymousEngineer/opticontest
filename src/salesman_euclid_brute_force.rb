@@ -30,6 +30,16 @@ class Points
 
     Math.sqrt delta_x**2 + delta_y**2
   end
+
+  def path_length(indices)
+    result = 0.0
+
+    (indices.count - 1).times do |index|
+      result += distance indices[index], indices[index + 1]
+    end
+
+    result
+  end
 end
 
 $points = Points.new
@@ -42,18 +52,11 @@ $all_indices = (0...$points.count).to_a
 
 $solutions = []
 
-def len(indices)
-  result = 0.0
-
-  (indices.count - 1).times do |index|
-    result += $points.distance indices[index], indices[index + 1]
-  end
-
-  result
-end
-
 def rec(indices)
-  return $solutions << [len(indices), indices] if indices.count == $points.count
+  if indices.count == $points.count
+    $solutions << [$points.path_length(indices), indices]
+    return
+  end
 
   ($all_indices - indices).each do |index|
     rec indices + [index]
