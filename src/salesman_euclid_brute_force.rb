@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/salesman_euclid'
+require_relative 'ruby/salesman_euclid'
 
 $points = Points.new
 
