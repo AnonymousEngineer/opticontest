@@ -7,14 +7,45 @@ MAX_ITERATIONS = 2_000
 MAX_TEMP = 100_000.0
 TEMP_CHANGE = 0.98
 
-def search(points, max_iterations, max_temp, temp_change)
+class Config
+  attr_reader :max_iterations, :max_temperature, :temperature_change
+
+  def initialize(max_iterations:, max_temperature:, temperature_change:)
+    self.max_iterations = max_iterations
+    self.max_temperature = max_temperature
+    self.temperature_change = temperature_change
+  end
+
+  def max_iterations=(value)
+    raise TypeError unless value.is_a? Integer
+    raise unless value.positive?
+
+    @max_iterations = value
+  end
+
+  def max_temperature=(value)
+    raise TypeError unless value.is_a? Float
+    raise unless value.positive?
+
+    @max_temperature = value
+  end
+
+  def temperature_change=(value)
+    raise TypeError unless value.is_a? Float
+    raise unless value.positive? && value < 1.0
+
+    @temperature_change = value
+  end
+end
+
+def search(points, config)
   current_solution = Solution.new points, random_permutation(points)
-  temp = max_temp
+  temp = config.max_temperature
   best_solution = current_solution
 
-  max_iterations.times do
+  config.max_iterations.times do
     candidate_solution = create_neighbor current_solution
-    temp *= temp_change
+    temp *= config.temperature_change
 
     if should_accept? candidate_solution, current_solution, temp
       current_solution = candidate_solution
@@ -67,6 +98,12 @@ Integer($stdin.gets).times do
   $points.add(*$stdin.gets.split.map(&method(:Float)))
 end
 
-solution = search $points, MAX_ITERATIONS, MAX_TEMP, TEMP_CHANGE
+config = Config.new(
+  max_iterations: MAX_ITERATIONS,
+  max_temperature: MAX_TEMP,
+  temperature_change: TEMP_CHANGE,
+)
+
+solution = search $points, config
 
 puts solution.indices.join ' '
