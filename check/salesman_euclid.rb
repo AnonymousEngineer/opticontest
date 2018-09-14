@@ -14,9 +14,9 @@ raise 'Invalid count of indices' if points.size != indices.size
 
 result = 0.0
 
-indices[1..-1].each do |index|
-  prev_point = points[index - 1]
-  cur_point  = points[index]
+(indices.count - 1).times do |index|
+  prev_point = points[indices[index]]
+  cur_point  = points[indices[index + 1]]
 
   delta_x = prev_point[0] - cur_point[0]
   delta_y = prev_point[1] - cur_point[1]
