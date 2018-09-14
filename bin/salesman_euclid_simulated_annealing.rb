@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../pkgs/ruby/salesman_euclid/common'
-require_relative '../pkgs/ruby/salesman_euclid/simulated_annealing'
+require_relative '../pkgs/ruby/lib/opticontest/salesman_euclid/common'
+require_relative '../pkgs/ruby/lib/opticontest/salesman_euclid/simulated_annealing'
 
 require 'yaml'
 
