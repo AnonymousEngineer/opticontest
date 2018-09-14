@@ -12,6 +12,4 @@ end
 
 algorithm = Opticontest::SalesmanEuclid::BruteForce::Algorithm.new points
 
-solution = algorithm.solve
-
-puts solution.indices.join ' '
+puts algorithm.solution.indices.join ' '
