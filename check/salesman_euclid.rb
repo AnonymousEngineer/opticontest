@@ -3,9 +3,7 @@
 
 require_relative '../src/ruby/salesman_euclid/common'
 
-include Optimization::SalesmanEuclid::Common
-
-points = Points.new
+points = Optimization::SalesmanEuclid::Common::Points.new
 
 File.open ARGV[0] do |f|
   Integer(f.gets).times do
@@ -13,6 +11,9 @@ File.open ARGV[0] do |f|
   end
 end
 
-solution = Solution.new points, $stdin.gets.split.map(&method(:Integer))
+solution = Optimization::SalesmanEuclid::Common::Solution.new(
+  points,
+  $stdin.gets.split.map(&method(:Integer)),
+)
 
 puts solution.length
