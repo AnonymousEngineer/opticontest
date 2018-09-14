@@ -1,15 +1,19 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 class Points
   def initialize
     @coordinates = []
   end
 
-  def add(x, y)
-    raise TypeError unless x.is_a?(Float) && y.is_a?(Float)
-    raise 'less than zero' unless x >= 0 && y >= 0
-    coordinate = [x, y].freeze
+  def add(xxx, yyy)
+    raise TypeError unless xxx.is_a?(Float) && yyy.is_a?(Float)
+    raise 'less than zero' unless xxx >= 0 && yyy >= 0
+
+    coordinate = [xxx, yyy].freeze
+
     raise 'already exist' if @coordinates.include? coordinate
+
     @coordinates << coordinate
   end
 
@@ -47,8 +51,11 @@ class Solution
 
   def initialize(points, indices)
     raise TypeError unless points.is_a?(Points) && indices.is_a?(Array)
+
     indices.freeze
+
     raise 'invalid count' unless points.count == indices.count
+
     @points = points
     @indices = indices
   end

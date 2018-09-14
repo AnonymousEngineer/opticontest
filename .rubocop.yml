@@ -1,0 +1,33 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  DisplayCopNames: true
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Lint/ReturnInVoidContext:
+  Enabled: false
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/GlobalVars:
+  Enabled: false
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
