@@ -5,6 +5,8 @@ require_relative 'ruby/salesman_euclid'
 
 require 'yaml'
 
+include Optimization::SalesmanEuclid
+
 class Config
   attr_reader :max_iterations, :initial_temperature, :temperature_change
 

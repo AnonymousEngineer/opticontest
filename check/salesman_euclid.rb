@@ -3,6 +3,8 @@
 
 require_relative '../src/ruby/salesman_euclid'
 
+include Optimization::SalesmanEuclid
+
 points = Points.new
 
 File.open ARGV[0] do |f|

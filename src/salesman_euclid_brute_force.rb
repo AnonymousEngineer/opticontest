@@ -3,6 +3,8 @@
 
 require_relative 'ruby/salesman_euclid'
 
+include Optimization::SalesmanEuclid
+
 $points = Points.new
 
 Integer($stdin.gets).times do

@@ -26,6 +26,9 @@ Style/DoubleNegation:
 Style/GlobalVars:
   Enabled: false
 
+Style/MixinUsage:
+  Enabled: false
+
 Style/RescueStandardError:
   EnforcedStyle: implicit
 
