@@ -4,15 +4,15 @@
 require_relative '../lib/salesman_euclid'
 
 MAX_ITERATIONS = 2_000
-MAX_TEMP = 100_000.0
-TEMP_CHANGE = 0.98
+INITIAL_TEMPERATURE = 100_000.0
+TEMPERATURE_CHANGE = 0.98
 
 class Config
-  attr_reader :max_iterations, :max_temperature, :temperature_change
+  attr_reader :max_iterations, :initial_temperature, :temperature_change
 
-  def initialize(max_iterations:, max_temperature:, temperature_change:)
+  def initialize(max_iterations:, initial_temperature:, temperature_change:)
     self.max_iterations = max_iterations
-    self.max_temperature = max_temperature
+    self.initial_temperature = initial_temperature
     self.temperature_change = temperature_change
   end
 
@@ -23,11 +23,11 @@ class Config
     @max_iterations = value
   end
 
-  def max_temperature=(value)
+  def initial_temperature=(value)
     raise TypeError unless value.is_a? Float
     raise unless value.positive?
 
-    @max_temperature = value
+    @initial_temperature = value
   end
 
   def temperature_change=(value)
@@ -40,7 +40,7 @@ end
 
 def search(points, config)
   current_solution = Solution.new points, random_permutation(points)
-  temp = config.max_temperature
+  temp = config.initial_temperature
   best_solution = current_solution
 
   config.max_iterations.times do
@@ -100,8 +100,8 @@ end
 
 config = Config.new(
   max_iterations: MAX_ITERATIONS,
-  max_temperature: MAX_TEMP,
-  temperature_change: TEMP_CHANGE,
+  initial_temperature: INITIAL_TEMPERATURE,
+  temperature_change: TEMPERATURE_CHANGE,
 )
 
 solution = search $points, config
