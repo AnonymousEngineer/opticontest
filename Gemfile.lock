@@ -1,12 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    rake (12.3.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bundler (~> 1.16)
+  rake (~> 12.3)
 
 BUNDLED WITH
    1.16.4
