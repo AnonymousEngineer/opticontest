@@ -5,7 +5,7 @@ count = Integer ARGV[0]
 points = []
 
 count.times do
-  points << [rand(0..count), rand(0..count)]
+  points << [rand(0.0..count), rand(0.0..count)]
 end
 
 puts count
