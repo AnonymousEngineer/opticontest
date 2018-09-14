@@ -3,9 +3,7 @@
 
 require_relative '../lib/salesman_euclid'
 
-MAX_ITERATIONS = 2_000
-INITIAL_TEMPERATURE = 100_000.0
-TEMPERATURE_CHANGE = 0.98
+require 'yaml'
 
 class Config
   attr_reader :max_iterations, :initial_temperature, :temperature_change
@@ -99,9 +97,12 @@ Integer($stdin.gets).times do
 end
 
 config = Config.new(
-  max_iterations: MAX_ITERATIONS,
-  initial_temperature: INITIAL_TEMPERATURE,
-  temperature_change: TEMPERATURE_CHANGE,
+  **YAML.load_file(
+    File.expand_path(
+      '../config/salesman_euclid_simulated_annealing.yml',
+      __dir__,
+    ),
+  ),
 )
 
 solution = search $points, config

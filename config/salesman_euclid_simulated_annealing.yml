@@ -1,0 +1,3 @@
+:max_iterations: 2_000
+:initial_temperature: 100_000.0
+:temperature_change: 0.98
