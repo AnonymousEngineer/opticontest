@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../pkgs/ruby/lib/opticontest/salesman_euclid/common'
+lib = File.expand_path(File.join('..', 'pkgs', 'ruby', 'lib'), __dir__).freeze
+$LOAD_PATH.unshift lib unless $LOAD_PATH.include? lib
+
+require 'opticontest/salesman_euclid/common'
 
 points = Opticontest::SalesmanEuclid::Common::Points.new
 
