@@ -38,14 +38,18 @@ module Opticontest
       class Algorithm
         include Opticontest::SalesmanEuclid::Common
 
-        attr_reader :config, :points
+        attr_reader :config, :points, :solution
 
         def initialize(config, points)
           raise TypeError unless config.is_a?(Config) && points.is_a?(Points)
 
           @config = config
           @points = points
+
+          @solution = solve
         end
+
+      private
 
         def solve
           current_solution = Solution.new points, random_permutation
@@ -67,8 +71,6 @@ module Opticontest
 
           best_solution
         end
-
-      private
 
         def random_permutation
           perm = Array.new(points.count) { |i| i }

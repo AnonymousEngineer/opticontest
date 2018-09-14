@@ -26,6 +26,4 @@ algorithm = Opticontest::SalesmanEuclid::SimulatedAnnealing::Algorithm.new(
   points,
 )
 
-solution = algorithm.solve
-
-puts solution.indices.join ' '
+puts algorithm.solution.indices.join ' '
