@@ -6,10 +6,12 @@ require_relative 'ruby/salesman_euclid/simulated_annealing'
 
 require 'yaml'
 
-include Optimization::SalesmanEuclid::Common
-
 def search(points, config)
-  current_solution = Solution.new points, random_permutation(points)
+  current_solution = Optimization::SalesmanEuclid::Common::Solution.new(
+    points,
+    random_permutation(points),
+  )
+
   temp = config.initial_temperature
   best_solution = current_solution
 
@@ -47,7 +49,11 @@ end
 def create_neighbor(current_solution)
   indices = Array.new current_solution.indices
   stochastic_two_opt! indices
-  Solution.new current_solution.points, indices
+
+  Optimization::SalesmanEuclid::Common::Solution.new(
+    current_solution.points,
+    indices,
+  )
 end
 
 def stochastic_two_opt!(perm)
@@ -62,7 +68,7 @@ def stochastic_two_opt!(perm)
   perm
 end
 
-$points = Points.new
+$points = Optimization::SalesmanEuclid::Common::Points.new
 
 Integer($stdin.gets).times do
   $points.add(*$stdin.gets.split.map(&method(:Float)))
