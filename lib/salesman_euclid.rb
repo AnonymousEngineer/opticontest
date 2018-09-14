@@ -46,7 +46,7 @@ class Points
 end
 
 class Solution
-  attr_reader :indices
+  attr_reader :points, :indices
 
   def initialize(points, indices)
     raise TypeError unless points.is_a?(Points) && indices.is_a?(Array)
@@ -60,6 +60,6 @@ class Solution
   end
 
   def length
-    @length ||= @points.path_length indices
+    @length ||= points.path_length indices
   end
 end
