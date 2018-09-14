@@ -34,6 +34,77 @@ module Optimization
           @temperature_change = value
         end
       end
+
+      class Algorithm
+        include Optimization::SalesmanEuclid::Common
+
+        attr_reader :config, :points
+
+        def initialize(config, points)
+          raise TypeError unless config.is_a?(Config) && points.is_a?(Points)
+
+          @config = config
+          @points = points
+        end
+
+        def solve
+          current_solution = Solution.new points, random_permutation
+          temp = config.initial_temperature
+          best_solution = current_solution
+
+          config.max_iterations.times do
+            candidate_solution = create_neighbor current_solution
+            temp *= config.temperature_change
+
+            if should_accept? candidate_solution, current_solution, temp
+              current_solution = candidate_solution
+            end
+
+            if candidate_solution.length < best_solution.length
+              best_solution = candidate_solution
+            end
+          end
+
+          best_solution
+        end
+
+      private
+
+        def random_permutation
+          perm = Array.new(points.count) { |i| i }
+          perm.each_index do |i|
+            r = rand(perm.size - i) + i
+            perm[r], perm[i] = perm[i], perm[r]
+          end
+          perm
+        end
+
+        def should_accept?(candidate_solution, current_solution, temp)
+          return true if candidate_solution.length <= current_solution.length
+
+          rand < Math.exp(
+            (current_solution.length - candidate_solution.length) / temp,
+          )
+        end
+
+        def create_neighbor(current_solution)
+          indices = Array.new current_solution.indices
+          stochastic_two_opt! indices
+          Solution.new current_solution.points, indices
+        end
+
+        def stochastic_two_opt!(perm)
+          c1 = rand perm.size
+          c2 = rand perm.size
+          exclude = [c1]
+          exclude << c1.zero? ? perm.size - 1 : c1 - 1
+          exclude << (c1 == perm.size - 1) ? 0 : c1 + 1
+          c2 = rand perm.size while exclude.include? c2
+          c1, c2 = c2, c1 if c2 < c1
+          perm[c1...c2] = perm[c1...c2].reverse
+          perm
+        end
+      end
     end
   end
 end
