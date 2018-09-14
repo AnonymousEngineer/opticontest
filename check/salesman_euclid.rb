@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../src/ruby/salesman_euclid/common'
+require_relative '../pkgs/ruby/salesman_euclid/common'
 
 points = Opticontest::SalesmanEuclid::Common::Points.new
 
