@@ -3,7 +3,7 @@
 
 require_relative '../src/ruby/salesman_euclid'
 
-include Optimization::SalesmanEuclid
+include Optimization::SalesmanEuclid::Common
 
 points = Points.new
 
