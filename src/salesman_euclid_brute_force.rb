@@ -42,6 +42,22 @@ class Points
   end
 end
 
+class Solution
+  attr_reader :indices
+
+  def initialize(points, indices)
+    raise TypeError unless points.is_a?(Points) && indices.is_a?(Array)
+    indices.freeze
+    raise 'invalid count' unless points.count == indices.count
+    @points = points
+    @indices = indices
+  end
+
+  def length
+    @length ||= @points.path_length indices
+  end
+end
+
 $points = Points.new
 
 Integer($stdin.gets).times do
@@ -54,7 +70,7 @@ $solutions = []
 
 def rec(indices)
   if indices.count == $points.count
-    $solutions << [$points.path_length(indices), indices]
+    $solutions << Solution.new($points, indices)
     return
   end
 
@@ -65,6 +81,6 @@ end
 
 rec []
 
-$solutions.sort_by!(&:first)
+$solutions.sort_by!(&:length)
 
-puts $solutions.first.last.join ' '
+puts $solutions.first.indices.join ' '
