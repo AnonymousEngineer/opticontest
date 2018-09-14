@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../src/ruby/salesman_euclid'
+require_relative '../src/ruby/salesman_euclid/common'
 
 include Optimization::SalesmanEuclid::Common
 
