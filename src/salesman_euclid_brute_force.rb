@@ -1,9 +1,31 @@
 #!/usr/bin/env ruby
 
-$points = []
+class Points
+  def initialize
+    @coordinates = []
+  end
+
+  def add(x, y)
+    raise TypeError unless x.is_a?(Float) && y.is_a?(Float)
+    raise 'less than zero' unless x >= 0 && y >= 0
+    coordinate = [x, y].freeze
+    raise 'already exist' if @coordinates.include? coordinate
+    @coordinates << coordinate
+  end
+
+  def [](index)
+    @coordinates[index] or raise 'invalid index'
+  end
+
+  def count
+    @coordinates.count
+  end
+end
+
+$points = Points.new
 
 Integer($stdin.gets).times do
-  $points << $stdin.gets.split.map(&method(:Integer))
+  $points.add(*$stdin.gets.split.map(&method(:Float)))
 end
 
 $all_indices = (0...$points.count).to_a
