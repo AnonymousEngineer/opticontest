@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative 'ruby/salesman_euclid/common'
-require_relative 'ruby/salesman_euclid/brute_force'
+require_relative '../src/ruby/salesman_euclid/common'
+require_relative '../src/ruby/salesman_euclid/brute_force'
 
 points = Opticontest::SalesmanEuclid::Common::Points.new
 
