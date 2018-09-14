@@ -2,41 +2,11 @@
 # frozen_string_literal: true
 
 require_relative 'ruby/salesman_euclid/common'
+require_relative 'ruby/salesman_euclid/simulated_annealing'
 
 require 'yaml'
 
 include Optimization::SalesmanEuclid::Common
-
-class Config
-  attr_reader :max_iterations, :initial_temperature, :temperature_change
-
-  def initialize(max_iterations:, initial_temperature:, temperature_change:)
-    self.max_iterations = max_iterations
-    self.initial_temperature = initial_temperature
-    self.temperature_change = temperature_change
-  end
-
-  def max_iterations=(value)
-    raise TypeError unless value.is_a? Integer
-    raise unless value.positive?
-
-    @max_iterations = value
-  end
-
-  def initial_temperature=(value)
-    raise TypeError unless value.is_a? Float
-    raise unless value.positive?
-
-    @initial_temperature = value
-  end
-
-  def temperature_change=(value)
-    raise TypeError unless value.is_a? Float
-    raise unless value.positive? && value < 1.0
-
-    @temperature_change = value
-  end
-end
 
 def search(points, config)
   current_solution = Solution.new points, random_permutation(points)
@@ -98,7 +68,7 @@ Integer($stdin.gets).times do
   $points.add(*$stdin.gets.split.map(&method(:Float)))
 end
 
-config = Config.new(
+config = Optimization::SalesmanEuclid::SimulatedAnnealing::Config.new(
   **YAML.load_file(
     File.expand_path(
       '../config/salesman_euclid_simulated_annealing.yml',
