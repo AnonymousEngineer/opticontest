@@ -3,10 +3,9 @@
 import sys
 import os
 
-bin_path = os.path.dirname(os.path.realpath(__file__))
-pkgs_path = os.path.realpath(os.path.join(bin_path, '..', 'pkgs', 'python'))
+scripts_path = os.path.dirname(os.path.realpath(__file__))
 
-sys.path.insert(0, pkgs_path)
+sys.path.insert(0, os.path.realpath(os.path.join(scripts_path, '..')))
 
 from opticontest.salesman_euclid.brute_force import Algorithm
 

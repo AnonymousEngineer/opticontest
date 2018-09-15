@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-lib = File.expand_path(File.join('..', 'pkgs', 'ruby', 'lib'), __dir__).freeze
+lib = File.expand_path(File.join('..', 'lib'), __dir__).freeze
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include? lib
 
 require 'opticontest/salesman_euclid/common'
