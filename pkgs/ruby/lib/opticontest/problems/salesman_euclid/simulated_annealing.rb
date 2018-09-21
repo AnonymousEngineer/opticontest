@@ -76,12 +76,7 @@ module Opticontest
           end
 
           def random_permutation
-            perm = Array.new(points.count) { |i| i }
-            perm.each_index do |i|
-              r = rand(perm.size - i) + i
-              perm[r], perm[i] = perm[i], perm[r]
-            end
-            perm
+            (0...points.count).to_a.shuffle
           end
 
           def should_accept?(candidate_solution, current_solution, temp)
