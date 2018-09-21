@@ -1,5 +1,5 @@
-defmodule Opticontest.SalesmanEuclid.BruteForce do
-  alias Opticontest.SalesmanEuclid.BruteForce.Solution
+defmodule Opticontest.Problems.SalesmanEuclid.BruteForce do
+  alias Opticontest.Problems.SalesmanEuclid.BruteForce.Solution
 
   def solve(points) when length(points) > 0 do
     permutate(points, Enum.to_list(0..(length(points) - 1)))
@@ -24,7 +24,7 @@ defmodule Opticontest.SalesmanEuclid.BruteForce do
   end
 end
 
-defmodule Opticontest.SalesmanEuclid.BruteForce.Solution do
+defmodule Opticontest.Problems.SalesmanEuclid.BruteForce.Solution do
   defstruct [:indices, :length]
 
   def build(points, indices) do

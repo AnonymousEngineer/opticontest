@@ -4,15 +4,16 @@
 lib = File.expand_path(File.join('..', 'lib'), __dir__).freeze
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include? lib
 
-require 'opticontest/salesman_euclid/common'
-require 'opticontest/salesman_euclid/brute_force'
+require 'opticontest/problems/salesman_euclid/common'
+require 'opticontest/problems/salesman_euclid/brute_force'
 
-points = Opticontest::SalesmanEuclid::Common::Points.new
+points = Opticontest::Problems::SalesmanEuclid::Common::Points.new
 
 Integer($stdin.gets).times do
   points.add(*$stdin.gets.split.map(&method(:Float)))
 end
 
-algorithm = Opticontest::SalesmanEuclid::BruteForce::Algorithm.new points
+algorithm =
+  Opticontest::Problems::SalesmanEuclid::BruteForce::Algorithm.new points
 
 puts algorithm.solution.indices.join ' '

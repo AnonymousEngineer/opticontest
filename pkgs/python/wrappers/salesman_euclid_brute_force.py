@@ -7,7 +7,7 @@ scripts_path = os.path.dirname(os.path.realpath(__file__))
 
 sys.path.insert(0, os.path.realpath(os.path.join(scripts_path, '..')))
 
-from opticontest.salesman_euclid.brute_force import Algorithm
+from opticontest.problems.salesman_euclid.brute_force import Algorithm
 
 count = int(input())
 
