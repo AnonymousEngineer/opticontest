@@ -55,7 +55,7 @@ module Opticontest
         private
 
           def solve
-            current_solution = Solution.new points, random_permutation
+            current_solution = Solution.random points
             temp = config.initial_temperature
             best_solution = current_solution
 
@@ -73,10 +73,6 @@ module Opticontest
             end
 
             best_solution
-          end
-
-          def random_permutation
-            (0...points.count).to_a.shuffle
           end
 
           def should_accept?(candidate_solution, current_solution, temp)

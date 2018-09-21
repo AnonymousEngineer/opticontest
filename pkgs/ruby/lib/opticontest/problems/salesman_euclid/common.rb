@@ -40,6 +40,11 @@ module Opticontest
         end
 
         class Solution
+          def self.random(points)
+            random_permutation = (0...points.count).to_a.shuffle
+            new points, random_permutation
+          end
+
           attr_reader :points, :indices
 
           def initialize(points, indices)
