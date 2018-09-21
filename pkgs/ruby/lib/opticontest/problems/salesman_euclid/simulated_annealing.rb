@@ -14,6 +14,8 @@ module Opticontest
             self.temperature_change = temperature_change
           end
 
+        private
+
           def max_iterations=(value)
             raise TypeError unless value.is_a? Integer
             raise unless value.positive?
