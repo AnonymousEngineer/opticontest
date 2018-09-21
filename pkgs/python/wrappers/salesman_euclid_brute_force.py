@@ -7,14 +7,15 @@ scripts_path = os.path.dirname(os.path.realpath(__file__))
 
 sys.path.insert(0, os.path.realpath(os.path.join(scripts_path, '..')))
 
+from opticontest.problems.salesman_euclid.common import Points
 from opticontest.problems.salesman_euclid.brute_force import Algorithm
 
 count = int(input())
 
-points = []
+points = Points()
 
 for x in range(0, count):
-    points.append(list(map(float, input().split())))
+    points.add(*map(float, input().split()))
 
 algorithm = Algorithm(points)
 

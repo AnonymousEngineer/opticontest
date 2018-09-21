@@ -10,11 +10,11 @@ class Algorithm:
         return len(self.points)
 
     def __rec(self, indices):
-        if len(indices) == self.count():
+        if len(indices) == len(self.points):
             self.__add_solution(indices)
             return
 
-        for index in [i for i in range(0, self.count()) if i not in indices]:
+        for index in [i for i in range(0, len(self.points)) if i not in indices]:
             self.__rec(indices + [index])
 
     def __add_solution(self, indices):
