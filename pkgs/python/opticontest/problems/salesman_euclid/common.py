@@ -1,4 +1,5 @@
 import math
+import random
 
 class Points:
     def __init__(self):
@@ -26,6 +27,12 @@ class Points:
         return math.sqrt(delta_x**2 + delta_y**2)
 
 class Solution:
+    @staticmethod
+    def random(points):
+        indices = list(range(0, len(points)))
+        random.shuffle(indices)
+        return Solution(points, indices)
+
     def __init__(self, points, indices):
         self.points = points
         self.indices = indices
