@@ -92,12 +92,9 @@ module Opticontest
           def stochastic_two_opt!(perm)
             c1 = rand perm.size
             c2 = rand perm.size
-            exclude = [c1]
-            exclude << c1.zero? ? perm.size - 1 : c1 - 1
-            exclude << (c1 == perm.size - 1) ? 0 : c1 + 1
-            c2 = rand perm.size while exclude.include? c2
+            c2 = rand perm.size while c1 == c2
             c1, c2 = c2, c1 if c2 < c1
-            perm[c1...c2] = perm[c1...c2].reverse
+            perm[c1..c2] = perm[c1..c2].reverse
             perm
           end
         end
