@@ -1,0 +1,20 @@
+from opticontest.problems.salesman_euclid.common import Solution
+
+class Config:
+    def __init__(self, **kwargs):
+        self.max_iterations = int(kwargs[':max_iterations'])
+
+class Algorithm:
+    def __init__(self, config, points):
+        self.config = config
+        self.points = points
+
+        self.solution = self.__solve()
+
+    def __solve(self):
+        best_solution = Solution.random(self.points)
+        for x in range(0, self.config.max_iterations):
+            current_solution = Solution.random(self.points)
+            if current_solution.length < best_solution.length:
+                best_solution = current_solution
+        return best_solution
