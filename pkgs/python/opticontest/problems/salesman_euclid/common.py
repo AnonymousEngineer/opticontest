@@ -44,12 +44,3 @@ class Solution:
             result += self.points.distance(self.indices[index],
                                            self.indices[index + 1])
         return result
-
-    def __distance(self, index1, index2):
-        prev_point = self.points[index1]
-        cur_point  = self.points[index2]
-
-        delta_x = prev_point[0] - cur_point[0]
-        delta_y = prev_point[1] - cur_point[1]
-
-        return math.sqrt(delta_x**2 + delta_y**2)
