@@ -2,7 +2,13 @@ from opticontest.problems.salesman_euclid.common import Solution
 
 class Config:
     def __init__(self, **kwargs):
-        self.max_iterations = int(kwargs[':max_iterations'])
+        self.__set_max_iterations(kwargs[':max_iterations'])
+
+    def __set_max_iterations(self, value):
+        value = int(value)
+        if value < 1:
+            raise RuntimeError('invalid value')
+        self.max_iterations = value
 
 class Algorithm:
     def __init__(self, config, points):
