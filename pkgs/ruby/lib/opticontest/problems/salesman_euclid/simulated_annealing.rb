@@ -60,7 +60,7 @@ module Opticontest
             best_solution = current_solution
 
             config.max_iterations.times do
-              candidate_solution = create_neighbor current_solution
+              candidate_solution = current_solution.partial_reverse
               temp *= config.temperature_change
 
               if should_accept? candidate_solution, current_solution, temp
@@ -81,21 +81,6 @@ module Opticontest
             rand < Math.exp(
               (current_solution.length - candidate_solution.length) / temp,
             )
-          end
-
-          def create_neighbor(current_solution)
-            indices = Array.new current_solution.indices
-            stochastic_two_opt! indices
-            Solution.new current_solution.points, indices
-          end
-
-          def stochastic_two_opt!(perm)
-            c1 = rand perm.size
-            c2 = rand perm.size
-            c2 = rand perm.size while c1 == c2
-            c1, c2 = c2, c1 if c2 < c1
-            perm[c1..c2] = perm[c1..c2].reverse
-            perm
           end
         end
       end

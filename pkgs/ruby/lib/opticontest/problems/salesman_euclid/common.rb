@@ -67,6 +67,23 @@ module Opticontest
 
             result
           end
+
+          def partial_reverse
+            new_indices = Array.new indices
+            stochastic_two_opt! new_indices
+            self.class.new points, new_indices
+          end
+
+        private
+
+          def stochastic_two_opt!(perm)
+            c1 = rand perm.size
+            c2 = rand perm.size
+            c2 = rand perm.size while c1 == c2
+            c1, c2 = c2, c1 if c2 < c1
+            perm[c1..c2] = perm[c1..c2].reverse
+            perm
+          end
         end
       end
     end
