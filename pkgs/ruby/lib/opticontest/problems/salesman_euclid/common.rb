@@ -82,7 +82,7 @@ module Opticontest
             c2 = rand perm.size while c1 == c2
             c1, c2 = c2, c1 if c2 < c1
             perm[c1..c2] = perm[c1..c2].reverse
-            perm
+            nil
           end
         end
       end

@@ -44,3 +44,19 @@ class Solution:
             result += self.points.distance(self.indices[index],
                                            self.indices[index + 1])
         return result
+
+    def partial_reverse(self):
+        new_indices = self.indices[:]
+        stochastic_two_opt(new_indices)
+        return Solution(self.points, new_indices)
+
+def stochastic_two_opt(perm):
+    c1 = random.randrange(0, len(perm))
+    c2 = random.randrange(0, len(perm))
+    while c1 == c2:
+        c2 = random.randrange(0, len(perm))
+    if c2 < c1:
+        c1, c2 = c2, c1
+    subperm = perm[c1:c2 + 1]
+    subperm.reverse()
+    perm[c1:c2 + 1] = subperm
